@@ -1,14 +1,21 @@
 package com.fife.leetcode.questions.q53
 
 fun main() {
-    val result = Solution().maxSubArray(intArrayOf(-2,1,-3,4,-1,2,1,-5,4))
+    val result = Solution().maxSubArray(intArrayOf(-2,1,-3,-222222222,-1,2,1,-5,4))
     println(result)
 }
 
 class Solution {
     fun maxSubArray(nums: IntArray): Int {
-        // SOme solution here someday
-
-        return 0
+        var subarray = nums[0]
+        var maxSubarray = nums[0]
+        for (index in nums.indices) {
+            if (index == 0) {
+                continue
+            }
+            subarray = nums[index].coerceAtLeast(subarray + nums[index])
+            maxSubarray = maxSubarray.coerceAtLeast(subarray)
+        }
+        return maxSubarray
     }
 }
