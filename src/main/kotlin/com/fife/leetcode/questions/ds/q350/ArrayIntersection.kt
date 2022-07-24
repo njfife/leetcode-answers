@@ -27,8 +27,8 @@ package com.fife.leetcode.questions.ds.q350
 
 fun main() {
     val result = Solution().intersect(
-        intArrayOf(1,2,2,1),
-        intArrayOf(2,2)
+        intArrayOf(4,9,5),
+        intArrayOf(9,4,9,8,4)
     )
 
     println(result.contentToString())
@@ -43,8 +43,10 @@ class Solution {
         val intersections = mutableListOf<Int>()
         for (p2 in nums2.indices) {
             useCountMap1[nums2[p2]]?.let {
-                intersections.add(nums2[p2])
-                useCountMap1[nums2[p2]] = (it - 1)
+                if (it >= 1) {
+                    intersections.add(nums2[p2])
+                    useCountMap1[nums2[p2]] = (it - 1)
+                }
             }
         }
         return intersections.toIntArray()
